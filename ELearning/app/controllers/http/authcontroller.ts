@@ -1,11 +1,10 @@
-// app/Controllers/Http/AuthController.ts
 import { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import jwt from 'jsonwebtoken'
 import env from '#start/env'
 
 export default class AuthController {
-  // 🟢 Register user baru
+  
   public async register({ request, response }: HttpContext) {
     try {
       const { name, email, password } = request.all()
@@ -24,7 +23,6 @@ export default class AuthController {
     }
   }
 
-  // 🟢 Login user
   public async login({ request, response }: HttpContext) {
     try {
       const { email, password } = request.all()
@@ -42,7 +40,6 @@ export default class AuthController {
     }
   }
 
-  // 🟢 Profil user (cek token)
   public async profile({ request, response }: HttpContext) {
     const user = (request as any)['user']
     console.log('User from middleware:', user)
@@ -57,12 +54,10 @@ export default class AuthController {
     })
   }
 
-  // 🟢 Test endpoint
   public async test({ response }: HttpContext) {
     return response.ok({ message: 'Test berhasil' })
   }
 
-  // 🟢 Lihat semua users (untuk testing)
   public async getAllUsers({ response }: HttpContext) {
     try {
       const users = await User.find()
